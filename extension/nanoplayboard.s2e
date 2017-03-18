@@ -45,6 +45,21 @@
                 "work":"",
                 "loop":""
             }
+        ],
+        [
+            "w",
+            "rgb.setColor( %n , %n , %n )",
+            "rgbSetColor",
+            "255",
+            "255",
+            "255",
+            {
+                "setup":"",
+                "inc":"",
+                "def":"",
+                "work":"",
+                "loop":""
+            }
         ]
     ],
     "menus": {

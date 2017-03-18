@@ -22,6 +22,14 @@
         device.send([0xF0, 0x10, 0X32, 0xF7])
     }
 
+    ext.rgbSetColor = function(r, g, b){
+        d1 = r >> 1
+        d2 = ((r & 0x01) << 6) | (g >> 2)
+        d3 = ((g & 0x03) << 5) | (b >> 3)
+        d4 = (b & 0x07) << 4
+        device.send([0xF0, 0x10, 0X33, d1, d2, d3, d4, 0xF7])
+    }
+
     function processData(bytes) {
         trace(bytes);
     }
