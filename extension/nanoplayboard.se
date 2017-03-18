@@ -1,0 +1,32 @@
+{
+    "extensionName": "NanoPlayBoard",
+    "description": "NanoPlayBoard extension",
+    "version": "0.1.0",
+    "author": "José Juan Sánchez",
+    "homepage": "http://nanoplayboard.org",
+    "sort":0,
+    "javascriptURL":"js/nanoplayboard.js",
+    "firmware":"1.0",
+    "extensionPort":0,
+    "blockSpecs": [
+        ["h","NanoPlayBoard Program","runNanoPlayBoard"],
+        [
+            "w",
+            "rgb.toggle",
+            "rgbToggle",
+            {
+                "setup":"",
+                "inc":"",
+                "def":"",
+                "work":"",
+                "loop":""
+            }
+        ]
+    ],
+    "menus": {
+    },
+    "values":{
+    },
+    "translators":{
+    }
+}
