@@ -12,6 +12,30 @@
         ["h","NanoPlayBoard Program","runNanoPlayBoard"],
         [
             "w",
+            "rgb.on",
+            "rgbOn",
+            {
+                "setup":"",
+                "inc":"",
+                "def":"",
+                "work":"",
+                "loop":""
+            }
+        ],
+        [
+            "w",
+            "rgb.off",
+            "rgbOff",
+            {
+                "setup":"",
+                "inc":"",
+                "def":"",
+                "work":"",
+                "loop":""
+            }
+        ],
+        [
+            "w",
             "rgb.toggle",
             "rgbToggle",
             {

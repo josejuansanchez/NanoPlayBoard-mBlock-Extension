@@ -4,10 +4,19 @@
     var device = null;
     
     const BITRATE = 57600;
+    const EXTENSION_NAME = 'nanoplayboard'
 
     ext.resetAll = function(){};
 
     ext.runNanoPlayBoard = function(){};
+
+    ext.rgbOn = function(){
+        device.send([0xF0, 0x10, 0X30, 0xF7])
+    }
+
+    ext.rgbOff = function(){
+        device.send([0xF0, 0x10, 0X31, 0xF7])
+    }
 
     ext.rgbToggle = function(){
         device.send([0xF0, 0x10, 0X32, 0xF7])
@@ -42,7 +51,7 @@
             tryNextDevice();
             return;
         }
-        device.set_receive_handler('nanoplayboard',function(data) {
+        device.set_receive_handler(EXTENSION_NAME, function(data) {
             processData(data);
         });
     };
@@ -63,5 +72,5 @@
     }
 
     var descriptor = {};
-    ScratchExtensions.register('nanoplayboard', descriptor, ext, {type: 'serial'});
+    ScratchExtensions.register(EXTENSION_NAME, descriptor, ext, {type: 'serial'});
 })({});
