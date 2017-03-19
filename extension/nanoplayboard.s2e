@@ -2,7 +2,7 @@
     "extensionName": "NanoPlayBoard",
     "description": "NanoPlayBoard extension",
     "version": "0.1.0",
-    "author": "José Juan Sánchez",
+    "author": "Antonio Morales y José Juan Sánchez",
     "homepage": "http://nanoplayboard.org",
     "sort":0,
     "javascriptURL":"js/nanoplayboard.js",
