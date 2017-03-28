@@ -63,7 +63,7 @@
         ],
         [
             "R",
-            "readPotentiometer",
+            "potentiometer.read",
             "readPotentiometer",
             {
                 "setup":"",
@@ -72,7 +72,21 @@
                 "work":"",
                 "loop":""
             }
-        ]
+        ],
+        [
+            "R",
+            "potentiometer.scaleTo( %n , %n )",
+            "scaleToPotentiometer",
+            "0",
+            "180",
+            {
+                "setup":"",
+                "inc":"",
+                "def":"",
+                "work":"",
+                "loop":""
+            }
+        ],
 
     ],
     "menus": {
