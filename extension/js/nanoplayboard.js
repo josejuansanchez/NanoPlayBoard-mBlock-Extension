@@ -36,7 +36,6 @@
 
     function processData(bytes) {
         trace(bytes);
-
         var data = bytes.slice(4,8);
         var value = parseFirmataUint16(data);
         responseValue(0, value);
@@ -47,11 +46,10 @@
     }
 
     function parseFirmataUint16(data) {
-        var value = [
-            (data[0] & 0x7F) | ((data[1] & 0x01) << 7),
-            (data[2] & 0x7F)
-        ];
-        return value[0] | (value[1] >> 2);
+        var rawBytes = [];
+        rawBytes[0] = parseFirmataByte(data.slice(0,2));
+        rawBytes[1] = parseFirmataByte(data.slice(2,4));
+        return (rawBytes[1] << 8) | rawBytes[0];
     }
 
     // Extension API interactions
