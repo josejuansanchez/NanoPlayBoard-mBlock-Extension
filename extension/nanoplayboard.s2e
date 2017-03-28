@@ -138,6 +138,44 @@
                 "work":"",
                 "loop":""
             }
+        ],
+        [
+            "w",
+            "ledmatrix.printString ( %s )",
+            "ledMatrixPrintString",
+            "Hello!",
+            {
+                "setup":"",
+                "inc":"",
+                "def":"",
+                "work":"",
+                "loop":""
+            }
+        ],
+        [
+            "w",
+            "ledmatrix.stopPrint",
+            "ledMatrixStopPrint",
+            {
+                "setup":"",
+                "inc":"",
+                "def":"",
+                "work":"",
+                "loop":""
+            }
+        ],
+        [
+            "w",
+            "ledmatrix.printNumber ( %n )",
+            "ledMatrixPrintNumber",
+            "0",
+            {
+                "setup":"",
+                "inc":"",
+                "def":"",
+                "work":"",
+                "loop":""
+            }
         ]
     ],
     "menus": {

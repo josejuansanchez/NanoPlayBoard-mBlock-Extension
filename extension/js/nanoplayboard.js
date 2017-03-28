@@ -1,20 +1,19 @@
 // nanoplayboard.js
 
 (function(ext) {
-    var device = null;
-    
     const BITRATE = 57600;
     const EXTENSION_NAME = 'nanoplayboard';
+    var device = null;
 
     ext.resetAll = function(){};
 
     ext.runNanoPlayBoard = function(){};
 
     ext.buzzerPlayTone = function(frequency, duration) {
-        f1 = frequency & 0x7F
-        f2 = frequency >> 7
-        d1 = duration & 0x7F
-        d2 = duration >> 7
+        var f1 = frequency & 0x7F
+        var f2 = frequency >> 7
+        var d1 = duration & 0x7F
+        var d2 = duration >> 7
         device.send([0xF0, 0x10, 0X20, f1, f2, d1, d2, 0xF7]);
     }
 
@@ -35,10 +34,10 @@
     }
 
     ext.rgbSetColor = function(r, g, b){
-        d1 = r >> 1;
-        d2 = ((r & 0x01) << 6) | (g >> 2);
-        d3 = ((g & 0x03) << 5) | (b >> 3);
-        d4 = (b & 0x07) << 4;
+        var d1 = r >> 1;
+        var d2 = ((r & 0x01) << 6) | (g >> 2);
+        var d3 = ((g & 0x03) << 5) | (b >> 3);
+        var d4 = (b & 0x07) << 4;
         device.send([0xF0, 0x10, 0X33, d1, d2, d3, d4, 0xF7]);
     }
 
@@ -47,10 +46,10 @@
     }
 
     ext.scaleToPotentiometer = function(toLow, toHigh){
-        l1 = toLow & 0x7F
-        l2 = toLow >> 7
-        h1 = toHigh & 0x7F
-        h2 = toHigh >> 7
+        var l1 = toLow & 0x7F
+        var l2 = toLow >> 7
+        var h1 = toHigh & 0x7F
+        var h2 = toHigh >> 7
         device.send([0xF0, 0x10, 0x41, l1, l2, h1, h2, 0xF7]);
     }
 
@@ -59,11 +58,29 @@
     }
 
     ext.scaleToLdr = function(toLow, toHigh){
-        l1 = toLow & 0x7F
-        l2 = toLow >> 7
-        h1 = toHigh & 0x7F
-        h2 = toHigh >> 7
+        var l1 = toLow & 0x7F
+        var l2 = toLow >> 7
+        var h1 = toHigh & 0x7F
+        var h2 = toHigh >> 7
         device.send([0xF0, 0x10, 0x51, l1, l2, h1, h2, 0xF7]);
+    }
+
+    ext.ledMatrixPrintString = function(message) {
+        var bytes = [0xF0, 0x10, 0x62, message.length];
+        for(var i = 0; i < message.length; i++) {
+            bytes.push(message.charCodeAt(i) & 0x7F);
+        }
+        bytes.push(0xF7);
+        device.send(bytes);
+    }
+
+    ext.ledMatrixPrintNumber = function(number) {
+        var n = number & 0x7F;
+        device.send([0xF0, 0x10, 0x63, n, 0xF7]);
+    }
+
+    ext.ledMatrixStopPrint = function() {
+        device.send([0xF0, 0x10, 0x64, 0xF7]);
     }
 
     function processData(bytes) {
