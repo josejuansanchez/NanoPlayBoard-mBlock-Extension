@@ -12,6 +12,32 @@
         ["h","NanoPlayBoard Program","runNanoPlayBoard"],
         [
             "w",
+            "buzzer.playTone ( %n Hz, %n ms)",
+            "buzzerPlayTone",
+            "440",
+            "100",
+            {
+                "setup":"",
+                "inc":"",
+                "def":"",
+                "work":"",
+                "loop":""
+            }
+        ],
+        [
+            "w",
+            "buzzer.stopTone",
+            "buzzerStopTone",
+            {
+                "setup":"",
+                "inc":"",
+                "def":"",
+                "work":"",
+                "loop":""
+            }
+        ],
+        [
+            "w",
             "rgb.on",
             "rgbOn",
             {

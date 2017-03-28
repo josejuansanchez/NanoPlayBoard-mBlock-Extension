@@ -10,6 +10,18 @@
 
     ext.runNanoPlayBoard = function(){};
 
+    ext.buzzerPlayTone = function(frequency, duration) {
+        f1 = frequency & 0x7F
+        f2 = frequency >> 7
+        d1 = duration & 0x7F
+        d2 = duration >> 7
+        device.send([0xF0, 0x10, 0X20, f1, f2, d1, d2, 0xF7]);
+    }
+
+    ext.buzzerStopTone = function(){
+        device.send([0xF0, 0x10, 0X21, 0xF7]);
+    }
+
     ext.rgbOn = function(){
         device.send([0xF0, 0x10, 0X30, 0xF7]);
     }
