@@ -60,7 +60,20 @@
                 "work":"",
                 "loop":""
             }
+        ],
+        [
+            "R",
+            "readPotentiometer",
+            "readPotentiometer",
+            {
+                "setup":"",
+                "inc":"",
+                "def":"",
+                "work":"",
+                "loop":""
+            }
         ]
+
     ],
     "menus": {
     },

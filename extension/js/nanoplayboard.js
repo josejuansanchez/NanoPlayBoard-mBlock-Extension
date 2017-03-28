@@ -4,34 +4,54 @@
     var device = null;
     
     const BITRATE = 57600;
-    const EXTENSION_NAME = 'nanoplayboard'
+    const EXTENSION_NAME = 'nanoplayboard';
 
     ext.resetAll = function(){};
 
     ext.runNanoPlayBoard = function(){};
 
     ext.rgbOn = function(){
-        device.send([0xF0, 0x10, 0X30, 0xF7])
+        device.send([0xF0, 0x10, 0X30, 0xF7]);
     }
 
     ext.rgbOff = function(){
-        device.send([0xF0, 0x10, 0X31, 0xF7])
+        device.send([0xF0, 0x10, 0X31, 0xF7]);
     }
 
     ext.rgbToggle = function(){
-        device.send([0xF0, 0x10, 0X32, 0xF7])
+        device.send([0xF0, 0x10, 0X32, 0xF7]);
     }
 
     ext.rgbSetColor = function(r, g, b){
-        d1 = r >> 1
-        d2 = ((r & 0x01) << 6) | (g >> 2)
-        d3 = ((g & 0x03) << 5) | (b >> 3)
-        d4 = (b & 0x07) << 4
-        device.send([0xF0, 0x10, 0X33, d1, d2, d3, d4, 0xF7])
+        d1 = r >> 1;
+        d2 = ((r & 0x01) << 6) | (g >> 2);
+        d3 = ((g & 0x03) << 5) | (b >> 3);
+        d4 = (b & 0x07) << 4;
+        device.send([0xF0, 0x10, 0X33, d1, d2, d3, d4, 0xF7]);
+    }
+
+    ext.readPotentiometer = function(){
+        device.send([0xF0, 0x10, 0X40, 0xF7]);
     }
 
     function processData(bytes) {
         trace(bytes);
+
+        var data = bytes.slice(4,8);
+        var value = parseFirmataUint16(data);
+        responseValue(0, value);
+    }
+
+    function parseFirmataByte(data) {
+        return (data[0] & 0x7F) | ((data[1] & 0x01) << 7);
+    }
+
+    function parseFirmataUint16(data) {
+        var value = [
+            (data[0] & 0x7F) | ((data[1] & 0x01) << 7),
+            (data[2] & 0x7F)
+        ];
+        return value[0] | (value[1] >> 2);
     }
 
     // Extension API interactions
@@ -59,9 +79,7 @@
             tryNextDevice();
             return;
         }
-        device.set_receive_handler(EXTENSION_NAME, function(data) {
-            processData(data);
-        });
+        device.set_receive_handler(EXTENSION_NAME, processData);
     };
 
     ext._deviceRemoved = function(dev) {
