@@ -42,6 +42,18 @@
         device.send([0xF0, 0x10, 0x41, l1, l2, h1, h2, 0xF7]);
     }
 
+    ext.readLdr = function(){
+        device.send([0xF0, 0x10, 0X50, 0xF7]);
+    }
+
+    ext.scaleToLdr = function(toLow, toHigh){
+        l1 = toLow & 0x7F
+        l2 = toLow >> 7
+        h1 = toHigh & 0x7F
+        h2 = toHigh >> 7
+        device.send([0xF0, 0x10, 0x51, l1, l2, h1, h2, 0xF7]);
+    }
+
     function processData(bytes) {
         var nextID = 0;
         var data;
@@ -52,6 +64,8 @@
         switch(bytes[2]) {
             case 0x40:
             case 0x41:
+            case 0x50:
+            case 0x51:
                 data = bytes.slice(4,8);
                 value = parseFirmataUint16(data);
                 break;

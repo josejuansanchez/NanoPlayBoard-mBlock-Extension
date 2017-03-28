@@ -87,7 +87,32 @@
                 "loop":""
             }
         ],
-
+        [
+            "R",
+            "ldr.read",
+            "readLdr",
+            {
+                "setup":"",
+                "inc":"",
+                "def":"",
+                "work":"",
+                "loop":""
+            }
+        ],
+        [
+            "R",
+            "ldr.scaleTo( %n , %n )",
+            "scaleToLdr",
+            "0",
+            "180",
+            {
+                "setup":"",
+                "inc":"",
+                "def":"",
+                "work":"",
+                "loop":""
+            }
+        ]
     ],
     "menus": {
     },
