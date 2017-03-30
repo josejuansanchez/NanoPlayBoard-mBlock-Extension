@@ -1,6 +1,57 @@
 // nanoplayboard.js
 
 (function(ext) {
+
+    var START_SYSEX              = 0xF0,
+        END_SYSEX                = 0xF7;
+
+    var COMMAND                  = 0x10;
+
+    var BUZZER_PLAY_TONE         = 0x20,
+        BUZZER_STOP_TONE         = 0x21;
+
+    var RGB_ON                   = 0x22,
+        RGB_OFF                  = 0x23,
+        RGB_TOGGLE               = 0x24,
+        RGB_SET_COLOR            = 0x25,
+        RGB_SET_INTENSITY        = 0x26;
+
+    var POTENTIOMETER_READ       = 0x27,
+        POTENTIOMETER_SCALE_TO   = 0x28;
+
+    var LDR_READ                 = 0x29,
+        LDR_SCALE_TO             = 0x30;
+
+    var LEDMATRIX_PRINT_CHAR     = 0x31,
+        LEDMATRIX_PRINT_PATTERN  = 0x32,
+        LEDMATRIX_PRINT_STRING   = 0x33,
+        LEDMATRIX_PRINT_IN_LAND  = 0x34,
+        LEDMATRIX_STOP_PRINT     = 0x35;
+
+    var SERVO_TO                 = 0x36,
+        SERVOS_GO_FORWARD        = 0x37,
+        SERVOS_GO_BACKWARD       = 0x38,
+        SERVOS_GO_RIGHT          = 0x39,
+        SERVOS_GO_LEFT           = 0x40,
+        SERVOS_SET_SPEED         = 0x41;
+
+    var ROTARY_ENCODER_READ      = 0x42;
+
+    var ULTRASOUND_READ          = 0x43,
+        ULTRASOUND_SCALE_TO      = 0x44;
+
+    var DHT_READ_TEMPERATURE     = 0x45,
+        DHT_READ_HUMIDITY        = 0x46;
+
+    var BUTTON_TOP_IS_PRESSED    = 0x47,
+        BUTTON_BOTTOM_IS_PRESSED = 0x48,
+        BUTTON_LEFT_IS_PRESSED   = 0x49,
+        BUTTON_RIGHT_IS_PRESSED  = 0x50;
+
+    var ACCELEROMETER_GET_X      = 0x51,
+        ACCELEROMETER_GET_Y      = 0x52,
+        ACCELEROMETER_GET_Z      = 0x53;
+
     const BITRATE = 57600;
     const EXTENSION_NAME = 'nanoplayboard';
     var device = null;
@@ -14,23 +65,23 @@
         var f2 = frequency >> 7
         var d1 = duration & 0x7F
         var d2 = duration >> 7
-        device.send([0xF0, 0x10, 0X20, f1, f2, d1, d2, 0xF7]);
+        device.send([START_SYSEX, COMMAND, BUZZER_PLAY_TONE, f1, f2, d1, d2, END_SYSEX]);
     }
 
     ext.buzzerStopTone = function(){
-        device.send([0xF0, 0x10, 0X21, 0xF7]);
+        device.send([START_SYSEX, COMMAND, BUZZER_STOP_TONE, END_SYSEX]);
     }
 
     ext.rgbOn = function(){
-        device.send([0xF0, 0x10, 0X30, 0xF7]);
+        device.send([START_SYSEX, COMMAND, RGB_ON, END_SYSEX]);
     }
 
     ext.rgbOff = function(){
-        device.send([0xF0, 0x10, 0X31, 0xF7]);
+        device.send([START_SYSEX, COMMAND, RGB_OFF, END_SYSEX]);
     }
 
     ext.rgbToggle = function(){
-        device.send([0xF0, 0x10, 0X32, 0xF7]);
+        device.send([START_SYSEX, COMMAND, RGB_TOGGLE, END_SYSEX]);
     }
 
     ext.rgbSetColor = function(r, g, b){
@@ -38,11 +89,11 @@
         var d2 = ((r & 0x01) << 6) | (g >> 2);
         var d3 = ((g & 0x03) << 5) | (b >> 3);
         var d4 = (b & 0x07) << 4;
-        device.send([0xF0, 0x10, 0X33, d1, d2, d3, d4, 0xF7]);
+        device.send([START_SYSEX, COMMAND, RGB_SET_COLOR, d1, d2, d3, d4, END_SYSEX]);
     }
 
     ext.readPotentiometer = function(){
-        device.send([0xF0, 0x10, 0X40, 0xF7]);
+        device.send([START_SYSEX, COMMAND, POTENTIOMETER_READ, END_SYSEX]);
     }
 
     ext.scaleToPotentiometer = function(toLow, toHigh){
@@ -50,11 +101,11 @@
         var l2 = toLow >> 7
         var h1 = toHigh & 0x7F
         var h2 = toHigh >> 7
-        device.send([0xF0, 0x10, 0x41, l1, l2, h1, h2, 0xF7]);
+        device.send([START_SYSEX, COMMAND, POTENTIOMETER_SCALE_TO, l1, l2, h1, h2, END_SYSEX]);
     }
 
     ext.readLdr = function(){
-        device.send([0xF0, 0x10, 0X50, 0xF7]);
+        device.send([START_SYSEX, COMMAND, LDR_READ, END_SYSEX]);
     }
 
     ext.scaleToLdr = function(toLow, toHigh){
@@ -62,25 +113,29 @@
         var l2 = toLow >> 7
         var h1 = toHigh & 0x7F
         var h2 = toHigh >> 7
-        device.send([0xF0, 0x10, 0x51, l1, l2, h1, h2, 0xF7]);
+        device.send([START_SYSEX, COMMAND, LDR_SCALE_TO, l1, l2, h1, h2, END_SYSEX]);
     }
 
     ext.ledMatrixPrintString = function(message) {
-        var bytes = [0xF0, 0x10, 0x62, message.length];
+        var bytes = [START_SYSEX, COMMAND, LEDMATRIX_PRINT_STRING, message.length];
         for(var i = 0; i < message.length; i++) {
             bytes.push(message.charCodeAt(i) & 0x7F);
         }
-        bytes.push(0xF7);
+        bytes.push(END_SYSEX);
         device.send(bytes);
     }
 
     ext.ledMatrixPrintNumber = function(number) {
         var n = number & 0x7F;
-        device.send([0xF0, 0x10, 0x63, n, 0xF7]);
+        device.send([START_SYSEX, COMMAND, LEDMATRIX_PRINT_IN_LAND, n, END_SYSEX]);
     }
 
     ext.ledMatrixStopPrint = function() {
-        device.send([0xF0, 0x10, 0x64, 0xF7]);
+        device.send([START_SYSEX, COMMAND, LEDMATRIX_STOP_PRINT, END_SYSEX]);
+    }
+
+    ext.readUltrasound = function(){
+        device.send([START_SYSEX, COMMAND, ULTRASOUND_READ, END_SYSEX]);
     }
 
     function processData(bytes) {
@@ -91,10 +146,11 @@
         trace(bytes);
 
         switch(bytes[2]) {
-            case 0x40:
-            case 0x41:
-            case 0x50:
-            case 0x51:
+            case POTENTIOMETER_READ:
+            case POTENTIOMETER_SCALE_TO:
+            case LDR_READ:
+            case LDR_SCALE_TO:
+            case ULTRASOUND_READ:
                 data = bytes.slice(4,8);
                 value = parseFirmataUint16(data);
                 break;

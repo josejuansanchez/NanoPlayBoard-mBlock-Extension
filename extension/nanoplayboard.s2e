@@ -176,6 +176,18 @@
                 "work":"",
                 "loop":""
             }
+        ],
+        [
+            "R",
+            "ultrasound.read",
+            "readUltrasound",
+            {
+                "setup":"",
+                "inc":"",
+                "def":"",
+                "work":"",
+                "loop":""
+            }
         ]
     ],
     "menus": {
