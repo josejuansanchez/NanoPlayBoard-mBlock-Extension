@@ -56,8 +56,6 @@
     const EXTENSION_NAME = 'nanoplayboard';
     var device = null;
 
-    var buttons = {"left":0, "right":1, "down":2};
-
     ext.resetAll = function(){};
 
     ext.runNanoPlayBoard = function(){};
