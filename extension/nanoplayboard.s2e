@@ -12,7 +12,7 @@
         ["h","NanoPlayBoard Program","runNanoPlayBoard"],
         [
             "w",
-            "buzzer.playTone ( %n Hz, %n ms)",
+            "buzzer.playTone %n Hz for %n ms",
             "buzzerPlayTone",
             "440",
             "100",
@@ -74,7 +74,7 @@
         ],
         [
             "w",
-            "rgb.setColor( %n , %n , %n )",
+            "rgb.setColor R %n G %n B %n ",
             "rgbSetColor",
             "255",
             "255",
@@ -101,7 +101,7 @@
         ],
         [
             "R",
-            "potentiometer.scaleTo( %n , %n )",
+            "potentiometer.scale to %n and %n ",
             "scaleToPotentiometer",
             "0",
             "180",
@@ -127,7 +127,7 @@
         ],
         [
             "R",
-            "ldr.scaleTo( %n , %n )",
+            "ldr.scale to %n and %n ",
             "scaleToLdr",
             "0",
             "180",
@@ -141,7 +141,7 @@
         ],
         [
             "w",
-            "ledmatrix.printString ( %s )",
+            "ledmatrix.printString  %s ",
             "ledMatrixPrintString",
             "Hello!",
             {
@@ -166,7 +166,7 @@
         ],
         [
             "w",
-            "ledmatrix.printNumber ( %n )",
+            "ledmatrix.printNumber  %n ",
             "ledMatrixPrintNumber",
             "0",
             {
@@ -190,33 +190,10 @@
             }
         ],
         [
-            "R",
-            "button.left isPressed?",
-            "buttonLeftIsPressed",
-            {
-                "setup":"",
-                "inc":"",
-                "def":"",
-                "work":"",
-                "loop":""
-            }
-        ],
-        [
-            "R",
-            "button.right isPressed?",
-            "buttonRightIsPressed",
-            {
-                "setup":"",
-                "inc":"",
-                "def":"",
-                "work":"",
-                "loop":""
-            }
-        ],
-        [
-            "R",
-            "button.down isPressed?",
-            "buttonDownIsPressed",
+            "B",
+            "button %m.buttons is pressed",
+            "buttonIsPressed",
+            "left",
             {
                 "setup":"",
                 "inc":"",
@@ -227,6 +204,7 @@
         ]
     ],
     "menus": {
+        "buttons":["left", "right", "down"]
     },
     "values":{
     },

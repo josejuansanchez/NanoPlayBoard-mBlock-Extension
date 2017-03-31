@@ -56,6 +56,8 @@
     const EXTENSION_NAME = 'nanoplayboard';
     var device = null;
 
+    var buttons = {"left":0, "right":1, "down":2};
+
     ext.resetAll = function(){};
 
     ext.runNanoPlayBoard = function(){};
@@ -134,20 +136,24 @@
         device.send([START_SYSEX, COMMAND, LEDMATRIX_STOP_PRINT, END_SYSEX]);
     }
 
-    ext.readUltrasound = function(){
+    ext.readUltrasound = function() {
         device.send([START_SYSEX, COMMAND, ULTRASOUND_READ, END_SYSEX]);
     }
 
-    ext.buttonLeftIsPressed = function(){
-        device.send([START_SYSEX, COMMAND, BUTTON_LEFT_IS_PRESSED, END_SYSEX]);
-    }
+    ext.buttonIsPressed = function(button){
+        switch(button) {
+            case "left":
+                device.send([START_SYSEX, COMMAND, BUTTON_LEFT_IS_PRESSED, END_SYSEX]);
+                break;
 
-    ext.buttonRightIsPressed = function(){
-        device.send([START_SYSEX, COMMAND, BUTTON_RIGHT_IS_PRESSED, END_SYSEX]);
-    }
+            case "right":
+                device.send([START_SYSEX, COMMAND, BUTTON_RIGHT_IS_PRESSED, END_SYSEX]);
+                break;
 
-    ext.buttonDownIsPressed = function(){
-        device.send([START_SYSEX, COMMAND, BUTTON_DOWN_IS_PRESSED, END_SYSEX]);
+            case "down":
+                device.send([START_SYSEX, COMMAND, BUTTON_DOWN_IS_PRESSED, END_SYSEX]);
+                break;
+        }
     }
 
     function processData(bytes) {
