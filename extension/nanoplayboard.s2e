@@ -1,7 +1,7 @@
 {
     "extensionName": "NanoPlayBoard",
     "description": "NanoPlayBoard extension",
-    "version": "0.1.0",
+    "version": "0.0.1",
     "author": "Antonio Morales y José Juan Sánchez",
     "homepage": "http://nanoplayboard.org",
     "sort":0,
