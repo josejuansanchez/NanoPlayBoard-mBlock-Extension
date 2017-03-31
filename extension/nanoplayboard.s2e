@@ -12,7 +12,7 @@
         ["h","NanoPlayBoard Program","runNanoPlayBoard"],
         [
             "w",
-            "buzzer.playTone %n Hz for %n ms",
+            "buzzer play tone %n Hz for %n ms",
             "buzzerPlayTone",
             "440",
             "100",
@@ -26,7 +26,7 @@
         ],
         [
             "w",
-            "buzzer.stopTone",
+            "buzzer stop tone",
             "buzzerStopTone",
             {
                 "setup":"",
@@ -38,7 +38,7 @@
         ],
         [
             "w",
-            "rgb.on",
+            "rgb on",
             "rgbOn",
             {
                 "setup":"",
@@ -50,7 +50,7 @@
         ],
         [
             "w",
-            "rgb.off",
+            "rgb off",
             "rgbOff",
             {
                 "setup":"",
@@ -62,7 +62,7 @@
         ],
         [
             "w",
-            "rgb.toggle",
+            "rgb toggle",
             "rgbToggle",
             {
                 "setup":"",
@@ -74,7 +74,7 @@
         ],
         [
             "w",
-            "rgb.setColor R %n G %n B %n ",
+            "rgb set color R %n G %n B %n ",
             "rgbSetColor",
             "255",
             "255",
@@ -89,7 +89,7 @@
         ],
         [
             "R",
-            "potentiometer.read",
+            "potentiometer read",
             "readPotentiometer",
             {
                 "setup":"",
@@ -101,7 +101,7 @@
         ],
         [
             "R",
-            "potentiometer.scale to %n and %n ",
+            "potentiometer scale to %n and %n ",
             "scaleToPotentiometer",
             "0",
             "180",
@@ -115,7 +115,7 @@
         ],
         [
             "R",
-            "ldr.read",
+            "ldr read",
             "readLdr",
             {
                 "setup":"",
@@ -127,7 +127,7 @@
         ],
         [
             "R",
-            "ldr.scale to %n and %n ",
+            "ldr scale to %n and %n ",
             "scaleToLdr",
             "0",
             "180",
@@ -141,7 +141,7 @@
         ],
         [
             "w",
-            "ledmatrix.printString  %s ",
+            "ledmatrix print  %s ",
             "ledMatrixPrintString",
             "Hello!",
             {
@@ -154,7 +154,7 @@
         ],
         [
             "w",
-            "ledmatrix.stopPrint",
+            "ledmatrix stop print",
             "ledMatrixStopPrint",
             {
                 "setup":"",
@@ -166,7 +166,7 @@
         ],
         [
             "w",
-            "ledmatrix.printNumber  %n ",
+            "ledmatrix print number  %n ",
             "ledMatrixPrintNumber",
             "0",
             {
@@ -179,7 +179,7 @@
         ],
         [
             "R",
-            "ultrasound.read",
+            "ultrasound read",
             "readUltrasound",
             {
                 "setup":"",
@@ -190,7 +190,7 @@
             }
         ],
         [
-            "B",
+            "b",
             "button %m.buttons is pressed",
             "buttonIsPressed",
             "left",
@@ -204,7 +204,7 @@
         ]
     ],
     "menus": {
-        "buttons":["left", "right", "down"]
+        "buttons":["left", "right", "down"] 
     },
     "values":{
     },
