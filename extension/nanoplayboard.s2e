@@ -188,6 +188,42 @@
                 "work":"",
                 "loop":""
             }
+        ],
+        [
+            "R",
+            "button.left isPressed?",
+            "buttonLeftIsPressed",
+            {
+                "setup":"",
+                "inc":"",
+                "def":"",
+                "work":"",
+                "loop":""
+            }
+        ],
+        [
+            "R",
+            "button.right isPressed?",
+            "buttonRightIsPressed",
+            {
+                "setup":"",
+                "inc":"",
+                "def":"",
+                "work":"",
+                "loop":""
+            }
+        ],
+        [
+            "R",
+            "button.down isPressed?",
+            "buttonDownIsPressed",
+            {
+                "setup":"",
+                "inc":"",
+                "def":"",
+                "work":"",
+                "loop":""
+            }
         ]
     ],
     "menus": {

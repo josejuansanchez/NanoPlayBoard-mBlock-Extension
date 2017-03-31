@@ -44,7 +44,7 @@
         DHT_READ_HUMIDITY        = 0x46;
 
     var BUTTON_TOP_IS_PRESSED    = 0x47,
-        BUTTON_BOTTOM_IS_PRESSED = 0x48,
+        BUTTON_DOWN_IS_PRESSED   = 0x48,
         BUTTON_LEFT_IS_PRESSED   = 0x49,
         BUTTON_RIGHT_IS_PRESSED  = 0x50;
 
@@ -138,6 +138,18 @@
         device.send([START_SYSEX, COMMAND, ULTRASOUND_READ, END_SYSEX]);
     }
 
+    ext.buttonLeftIsPressed = function(){
+        device.send([START_SYSEX, COMMAND, BUTTON_LEFT_IS_PRESSED, END_SYSEX]);
+    }
+
+    ext.buttonRightIsPressed = function(){
+        device.send([START_SYSEX, COMMAND, BUTTON_RIGHT_IS_PRESSED, END_SYSEX]);
+    }
+
+    ext.buttonDownIsPressed = function(){
+        device.send([START_SYSEX, COMMAND, BUTTON_DOWN_IS_PRESSED, END_SYSEX]);
+    }
+
     function processData(bytes) {
         var nextID = 0;
         var data;
@@ -153,6 +165,14 @@
             case ULTRASOUND_READ:
                 data = bytes.slice(4,8);
                 value = parseFirmataUint16(data);
+                break;
+
+            case BUTTON_TOP_IS_PRESSED:
+            case BUTTON_DOWN_IS_PRESSED:
+            case BUTTON_LEFT_IS_PRESSED:
+            case BUTTON_RIGHT_IS_PRESSED:
+                data = bytes.slice(4,6);
+                value = parseFirmataByte(data);
                 break;
         }
 
