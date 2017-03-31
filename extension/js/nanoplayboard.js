@@ -56,6 +56,8 @@
     const EXTENSION_NAME = 'nanoplayboard';
     var device = null;
 
+    var servoValues = {"servo 1":0, "servo 2":1};
+
     ext.resetAll = function(){};
 
     ext.runNanoPlayBoard = function(){};
@@ -152,6 +154,14 @@
                 device.send([START_SYSEX, COMMAND, BUTTON_DOWN_IS_PRESSED, END_SYSEX]);
                 break;
         }
+    }
+
+    ext.servoTo = function(servoId, degrees){
+        var id = typeof servoId == "string"?servoValues[servoId]:servoId;
+        id = id & 0x7F;
+        var d1 = degrees & 0x7F;
+        var d2 = degrees >> 7;
+        device.send([START_SYSEX, COMMAND, SERVO_TO, id, d1, d2, END_SYSEX]);
     }
 
     function processData(bytes) {

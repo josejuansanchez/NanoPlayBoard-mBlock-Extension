@@ -201,10 +201,25 @@
                 "work":"",
                 "loop":""
             }
+        ],
+        [
+            "w",
+            "%m.servos to %n",
+            "servoTo",
+            "servo 1",
+            "0",
+            {
+                "setup":"",
+                "inc":"",
+                "def":"",
+                "work":"",
+                "loop":""
+            }
         ]
     ],
     "menus": {
-        "buttons":["left", "right", "down"] 
+        "buttons":["left", "right", "down"],
+        "servos":["servo 1", "servo 2"]
     },
     "values":{
     },
