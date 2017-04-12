@@ -74,6 +74,19 @@
         ],
         [
             "w",
+            "rgb %m.rgb",
+            "rgb",
+            "on",
+            {
+                "setup":"",
+                "inc":"",
+                "def":"",
+                "work":"",
+                "loop":""
+            }
+        ],
+        [
+            "w",
             "rgb set color R %n G %n B %n ",
             "rgbSetColor",
             "255",
@@ -190,7 +203,7 @@
             }
         ],
         [
-            "b",
+            "B",
             "button %m.buttons is pressed",
             "buttonIsPressed",
             "left",
@@ -236,7 +249,8 @@
     ],
     "menus": {
         "buttons":["left", "right", "down"],
-        "servos":["servo 1", "servo 2"]
+        "servos":["servo 1", "servo 2"],
+        "rgb":["on", "off", "toggle"]
     },
     "values":{
     },

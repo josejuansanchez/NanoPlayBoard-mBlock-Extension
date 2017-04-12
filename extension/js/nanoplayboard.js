@@ -86,6 +86,22 @@
         device.send([START_SYSEX, COMMAND, RGB_TOGGLE, END_SYSEX]);
     }
 
+    ext.rgb = function(action) {
+        switch(action) {
+            case "on":
+                device.send([START_SYSEX, COMMAND, RGB_ON, END_SYSEX]);
+                break;
+
+            case "off":
+                device.send([START_SYSEX, COMMAND, RGB_OFF, END_SYSEX]);
+                break;
+
+            case "toggle":
+                device.send([START_SYSEX, COMMAND, RGB_TOGGLE, END_SYSEX]);
+                break;
+        }
+    }
+
     ext.rgbSetColor = function(r, g, b){
         var d1 = r >> 1;
         var d2 = ((r & 0x01) << 6) | (g >> 2);
