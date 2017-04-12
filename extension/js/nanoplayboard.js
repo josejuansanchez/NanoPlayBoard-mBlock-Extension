@@ -164,6 +164,11 @@
         device.send([START_SYSEX, COMMAND, SERVO_TO, id, d1, d2, END_SYSEX]);
     }
 
+    ext.map = function(nextID, x, in_min, in_max, out_min, out_max) {
+        var value = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+        responseValue(nextID, value);
+    }
+
     function processData(bytes) {
         var nextID = 0;
         var data;
