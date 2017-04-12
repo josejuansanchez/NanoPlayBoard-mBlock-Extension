@@ -230,14 +230,10 @@
             }
         ],
         [
-            "r",
-            "map %n from: %n , %n to: %n , %n",
-            "map",
-            "0",
-            "0",
-            "1023",
-            "240",
-            "-240",
+            "R",
+            "read %m.read",
+            "read",
+            "potentiometer",
             {
                 "setup":"",
                 "inc":"",
@@ -250,7 +246,8 @@
     "menus": {
         "buttons":["left", "right", "down"],
         "servos":["servo 1", "servo 2"],
-        "rgb":["on", "off", "toggle"]
+        "rgb":["on", "off", "toggle"],
+        "read":["potentiometer", "ultrasound", "ldr"]
     },
     "values":{
     },

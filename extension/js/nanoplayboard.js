@@ -54,9 +54,9 @@
 
     const BITRATE = 57600;
     const EXTENSION_NAME = 'nanoplayboard';
-    var device = null;
 
     var servoValues = {"servo 1":0, "servo 2":1};
+    var device = null;
 
     ext.resetAll = function(){};
 
@@ -180,9 +180,20 @@
         device.send([START_SYSEX, COMMAND, SERVO_TO, id, d1, d2, END_SYSEX]);
     }
 
-    ext.map = function(nextID, x, in_min, in_max, out_min, out_max) {
-        var value = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-        responseValue(nextID, value);
+    ext.read = function(sensor) {
+        switch(sensor) {
+            case "potentiometer":
+                device.send([START_SYSEX, COMMAND, POTENTIOMETER_READ, END_SYSEX]);
+                break;
+
+            case "ultrasound":
+                device.send([START_SYSEX, COMMAND, ULTRASOUND_READ, END_SYSEX]);
+                break;
+
+            case "ldr":
+                device.send([START_SYSEX, COMMAND, LDR_READ, END_SYSEX]);
+                break;
+        }
     }
 
     function processData(bytes) {
