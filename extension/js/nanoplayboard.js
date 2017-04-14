@@ -25,7 +25,7 @@
     var LEDMATRIX_PRINT_CHAR     = 0x31,
         LEDMATRIX_PRINT_PATTERN  = 0x32,
         LEDMATRIX_PRINT_STRING   = 0x33,
-        LEDMATRIX_PRINT_IN_LAND  = 0x34,
+        LEDMATRIX_PRINT_NUMBER   = 0x34,
         LEDMATRIX_STOP_PRINT     = 0x35;
 
     var SERVO_TO                 = 0x36,
@@ -145,7 +145,7 @@
 
     ext.ledMatrixPrintNumber = function(number) {
         var n = number & 0x7F;
-        device.send([START_SYSEX, COMMAND, LEDMATRIX_PRINT_IN_LAND, n, END_SYSEX]);
+        device.send([START_SYSEX, COMMAND, LEDMATRIX_PRINT_NUMBER, n, END_SYSEX]);
     }
 
     ext.ledMatrixStopPrint = function() {
